@@ -1,57 +1,41 @@
 package com.thrillio.config;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfiguration {
 
-	@Autowired
-	private DataSource dataSource;
-
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource).withDefaultSchema().withUser("user")
-				.password(passwordEncoder().encode("uspass")).roles("ADMIN");
+	@Bean
+	public InMemoryUserDetailsManager userDetailsService() {
+		UserDetails user1 = User.withUsername("user1").password(encoder().encode("user1Pass")).roles("USER").build();
+		UserDetails user2 = User.withUsername("user2").password(encoder().encode("user2Pass")).roles("USER").build();
+		UserDetails admin = User.withUsername("admin").password(encoder().encode("adminPass")).roles("ADMIN").build();
+		return new InMemoryUserDetailsManager(user1, user2, admin);
 	}
 
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		http.csrf().disable().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN").antMatchers("/anonymous*")
+				.anonymous().antMatchers("/login*").permitAll().anyRequest().authenticated().and().formLogin().loginPage("/auth/signUp");
+
+		return http.build();
+	}
+
+
+	@Bean
+	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
-	}
-
-	@Bean
-	UserDetailsManager users(DataSource dataSource) {
-		UserDetails user = User.builder().username("user")
-				.password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW").roles("USER").build();
-		UserDetails admin = User.builder().username("admin")
-				.password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW").roles("USER", "ADMIN")
-				.build();
-		JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-		users.createUser(user);
-		users.createUser(admin);
-		return users;
-	}
-
-	@Bean
-	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity.authorizeRequests().antMatchers("/signUp").permitAll().anyRequest().authenticated().and()
-				.formLogin();
-		httpSecurity.csrf().ignoringAntMatchers("/h2-console/**");
-		httpSecurity.headers().frameOptions().sameOrigin();
-		return httpSecurity.build();
 	}
 }
