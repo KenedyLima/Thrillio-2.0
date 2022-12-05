@@ -20,8 +20,8 @@ import com.thrillio.repositories.UserRepository;
 
 
 @Configuration
-@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
-@ComponentScan({"com.thrillio.controllers", "com.thrillio.repositories", "com.thrillio.entities"})
+//@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
+@ComponentScan("com.thrillio")
 @EnableJpaRepositories(basePackageClasses = {UserRepository.class})
 @EntityScan(basePackageClasses = {User.class})
 @SpringBootApplication

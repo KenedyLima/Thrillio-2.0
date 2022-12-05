@@ -20,7 +20,9 @@ public class User {
 	@NotEmpty(message = "Cannot be empty")
 	@Min(message = "Size should be greater of equal to 3", value = 3)*/
 	private String username;
-
+	
+	private String firstName;
+	private String lastName;
 	/*@Email(message = "Invalid email format")*/
 	private String email;
 
@@ -34,6 +36,7 @@ public class User {
 
 	private boolean enabled;
 
+	private int age;
 	public User() {
 		;
 
@@ -93,6 +96,30 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 }

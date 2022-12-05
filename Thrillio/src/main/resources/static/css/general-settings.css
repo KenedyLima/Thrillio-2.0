@@ -26,6 +26,7 @@ html {
   font-family: "lato-regular";
   font-size: 10px;
   color: #18181b;
+  overflow-x: hidden;
 }
 
 .container {
@@ -36,4 +37,17 @@ html {
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.site-logo {
+  color: #fb923c;
+  border-bottom: 1px solid #fb923c;
+  display: inline-block;
+  font-size: 3rem;
+  font-family: "lato-black";
+}
+
+.reset-button {
+  border: none;
+  background-color: transparent;
 }

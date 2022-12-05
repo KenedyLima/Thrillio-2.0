@@ -1,3 +1,4 @@
+
 package com.thrillio.controllers;
 
 import javax.validation.Valid;
@@ -30,9 +31,13 @@ public class AuthController {
 	@RequestMapping("/signUp")
 	public String getSignUpForm(Model model) {
 		User user = new User();
-		user.setUsername("Default");
 		model.addAttribute("user", user);
 		return "sign-up-page";
+	}
+	
+	@RequestMapping("/signIn")
+	public String getSignInForm(Model model) {
+		return "sign-in-page";
 	}
 
 	@RequestMapping("signUp/submit")

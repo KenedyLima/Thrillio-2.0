@@ -1,37 +1,85 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
-<head>
-<link th:href="@{/css/sign-up-page.css}" rel="stylesheet" />
-</head>
-<body>
-	<main>
-		<h1>Form</h1>
-		<form class="sign-up-form" action="/auth/signUp/submit"
-			th:object="${user}" method="POST" enctype="utf8">
-			<div th:class="label-input-wrapper">
-				
-			</div>
-			<div class="label-input-wrapper">
-				<label for="username">Name</label> <input id="username"
-					type="text" th:value="*{username}"
-					placeholder="Type in your name..." />
-	
-			</div>
-			<div class="label-input-wrapper">
-				<label for="email">Email</label> <input id="email" type="email"
-					th:field="*{email}" placeholder="Type in your email..." />
-				<p th:erros="*{email}">
-			</div>
-			<div class="label-input-wrapper">
-				<label for="password">Email</label> <input id="password"
-					type="password" th:value="${user.password}"
-					placeholder="Type in your password..." />
-			</div>
-			<input type="Submit" value="Sign Up">
-		</form>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Login</title>
+ 
+    <link
+      rel="stylesheet"
+      href="@{/css/general-settings.css}"
+    />
+ 	
+ 	<link
+      rel="stylesheet"
+      href="@{/css/sign-in-up.css}"
+    />
 
-		<a th:href="@{auth/login.html}">login</a>
-	</main>
 
-</body>
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/sign-in-page.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/general-settings.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/sign-in-up.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/sign-in-page.css"
+    />
+    <link th:href="@{/css/sign-up-page.css}" rel="stylesheet" />
+    <link th:href="@{/css/general-settings.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="site-logo">thrillio.io</h1>
+      </header>
+      <main>
+        <form class="sign-up-form" action="@{/auth/submit}" th:object="${user}">
+          <h2 class="form-title">Login</h2>
+          <p class="form-p">welcome back!</p>
+          <div class="fields-wrapper">
+            <div class="label-input-wrapper flex-column">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="text"
+                placeholder="jhon.doe@example.com"
+                th:field="*{email}"
+              />
+            </div>
+            <div class="label-input-wrapper flex-column">
+              <label for="password">Password</label>
+              <input
+                id="password"
+                placeholder="my@SuP3r.S3curePassW0rd"
+                type="password"
+                th:field="*{password}"
+              />
+            </div>
+            <input type="submit" class="submit-button" value="Join Now" />
+          </div>
+          <div class="oauth-wrapper flex-column">
+            <span class="enter-span">Or enter with</span>
+            <ul class="enter-options">
+              <li class="option">
+                <img
+                  class="logo"
+                  th:src="@{/img/google-logo.png}"
+                  alt="google-browser-logo"
+                />
+                <span class="text">Google</span>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </main>
+    </div>
+  </body>
 </html>

@@ -1,16 +1,167 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
-</head>
-<body>
-	<div class="container">
-        <header class="hero">
-            <div class="poster-gallery-container">
-                
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Homepage</title>
+    <link
+      rel="stylesheet"
+      href="@{/css/general-settings.css}"
+    />
+  	 <link
+      rel="stylesheet"
+      href="@{/css/home.css}"
+    />
+  </head>
+  <body>
+    <header id="#hero" class="hero">
+      <div class="hero-header">
+        <span class="site-logo">thrillio.io</span>
+        <ul class="auth-buttons-wrapper">
+          <li>
+            <button class="auth-button reset-button">
+              <a href="@{/auth/signUp}"> Sign Up</a>
+            </button>
+          </li>
+          <li>
+            <button class="auth-button reset-button sign-in-button">
+              <a href="@{/auth/login}">Sign In</a>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="hero-title-cta-button-wrapper">
+        <div class="hero-title">
+          <h1><span>Everything</span> you like</h1>
+          <h1>in one place!</h1>
+          <button class="reset-button cta-button">Start Now</button>
+        </div>
+      </div>
+    </header>
+    <section class="browse-section">
+      <h2 class="section-title">Browse</h2>
+      <p class="section-p">
+        Browse through a serie of Movies, Books and Weblinks
+      </p>
+      <div class="vertical-dashed-line"></div>
+      <div class="path" id="path-1">
+         <img
+                  class="logo"
+                  th:src="@{/img/Vector 1.svg}"
+                  alt="google-browser-logo"
+                />
+               
+        <div class="path-reward">
+  <img
+                  class="logo"
+                  th:src="@{/img/Group 6.svg}"
+                  alt="google-browser-logo"
+                />
+               </div>
+      </div>
+
+      <div class="path" id="path-2">
+        <img th:src="@{/img/Vector 2.svg}" alt="" />
+        <div class="path-reward">
+          <img
+            class="reward-drawing"
+            th:src="@{/img/Group 10.svg}"
+            alt=""
+          />
+        </div>
+      </div>
+
+      <div class="path" id="path-3">
+        <img th:src="@{/img/Vector 3.svg}" alt="" />
+        <div class="path-reward">
+          <img
+            class="reward-drawing"
+            th:src="@{/img/Group 20.svg}"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="bookmark-section">
+      <h2 class="section-title">Bookmark</h2>
+      <p class="section-p bookmark-p">
+        Bookmark your favorites and keep them organized in your personal list
+        
+        <div class="boxes-container">
+          <div class="box movies-box flex-column">
+            <h1 class="box-header">Your movies</h1>
+              <div class="movie-box-item box-item">
+                <p class="title item-info">Title: <span class="info-value">Titanic</span></p>
+                <p class="genre item-info">Genre: <span class="info-value">Romance</span></p>
+                <p class="release-date item-info">Release date: <span class="info-value">1999</span></p>
+              </div>      
+
+              <div class="movie-box-item box-item">
+                <p class="title item-info">Title: <span class="info-value">Garfield: The cat</span></p>
+                <p class="genre item-info">Genre: <span class="info-value">Adventure</span></p>
+                <p class="release-date item-info">Release date: <span class="info-value">2003
+                  
+                </span></p>
+              </div>      
             </div>
-        </header>
-    </div>
-</body>
+          <div class="box books-box flex-column">
+            <h1 class="box-header">Your Books</h1>
+            <div class="movie-box-item box-item">
+              <p class="title item-info">Title: <span class="info-value">Titanic</span></p>
+              <p class="genre item-info">Genre: <span class="info-value">Romance</span></p>
+              <p class="release-date item-info">Release date: <span class="info-value">1999</span></p>
+            </div>      
+
+            <div class="movie-box-item box-item">
+              <p class="title item-info">Title: <span class="info-value">Garfield: The cat</span></p>
+              <p class="genre item-info">Genre: <span class="info-value">Adventure</span></p>
+              <p class="release-date item-info">Release date: <span class="info-value">2003
+                
+              </span></p>
+            </div>
+          </div>
+          <div class="box weblinks-box flex-column"><h1 class="box-header">Your Weblinks</h1>
+            <div class="movie-box-item box-item">
+              <p class="title item-info">Title: <span class="info-value">Titanic</span></p>
+              <p class="genre item-info">Genre: <span class="info-value">Romance</span></p>
+              <p class="release-date item-info">Release date: <span class="info-value">1999</span></p>
+            </div>      
+
+            <div class="movie-box-item box-item">
+              <p class="title item-info">Title: <span class="info-value">Garfield: The cat</span></p>
+              <p class="genre item-info">Genre: <span class="info-value">Adventure</span></p>
+              <p class="release-date item-info">Release date: <span class="info-value">2003
+                
+              </span></p>
+            </div>
+          </div>
+        </div>
+      </p>
+    </section>
+    <section class="cta-section flex-column">
+      <h2 class="section-title">Join Us</h2>
+      <p class="section-p cta-p">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, tenetur incidunt. Placeat eius architecto optio hic culpa numquam nesciunt commodi labore, illum aspernatur sed tempore, veritatis, molestiae eaque ullam quas?
+      </p>
+        <button class="reset-button cta-button">Join Now</button>
+              
+    </section>
+    <footer>
+      <div class="links-container">
+        <div class="more-about-links flex-column">
+          <span class="link-container-title">Know more</span>
+          <a href="#hero">Home</a>
+          <a href="">About us</a>
+        </div>
+        <div class="contact-us-links flex-column">
+          <span class="link-container-title">Contact Us</span>
+          <a href="mailto:thrillio.io@corp.com">Email</a>
+          <div class="social-links">
+            <div class="icon-text-wrapper">Linkedin</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>

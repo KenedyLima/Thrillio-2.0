@@ -3,8 +3,20 @@
   <head>
     <meta charset="ISO-8859-1" />
     <title>Sign Up</title>
-    <link rel="stylesheet" href="../../../resources/css/general-settings.css" />
-    <link rel="stylesheet" href="../../../resources/css/sign-up-page.css" />
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/general-settings.css"
+    />
+    <link rel="stylesheet" href="../../../resources/static/" />
+
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/sign-up-page.css"
+    />
+    <link th:href="@{/css/sign-up-page.css}" rel="stylesheet" />
+    <link th:href="@{/css/general-settings.css}" rel="stylesheet" />
+    <link th:href="@{/css/sign-in-up.css}" rel="stylesheet" />
+  
   </head>
   <body>
     <div class="container">
@@ -12,7 +24,7 @@
         <h1 class="site-logo">thrillio.io</h1>
       </header>
       <main>
-        <form class="sign-up-form" action="" th:object="${user}">
+        <form class="sign-up-form" action="@{/auth/submit}" th:object="${user}">
           <h2 class="form-title">Create your account</h2>
           <p class="form-p">Join us and bookmark your favorites!</p>
           <div class="fields-wrapper">
@@ -72,7 +84,7 @@
               <li class="option">
                 <img
                   class="logo"
-                  src="../../../resources/img/google-logo.png"
+                  th:src="@{/img/google-logo.png}"
                   alt="google-browser-logo"
                 />
                 <span class="text">Google</span>
