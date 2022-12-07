@@ -1,4 +1,3 @@
-
 package com.thrillio.controllers;
 
 import javax.validation.Valid;
@@ -10,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thrillio.entities.User;
@@ -21,13 +19,8 @@ import com.thrillio.repositories.UserRepository;
 public class AuthController {
 
 	@Autowired
-	private UserRepository userRepository;
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String home() {
-		return "home";
-	}
-	
+	private UserRepository repository;
+
 	@RequestMapping("/signUp")
 	public String getSignUpForm(Model model) {
 		User user = new User();
@@ -35,25 +28,21 @@ public class AuthController {
 		return "sign-up-page";
 	}
 	
-	@RequestMapping("/signIn")
+	@RequestMapping("/login")
 	public String getSignInForm(Model model) {
+		model.addAttribute("user", new User());
 		return "sign-in-page";
 	}
-
-	@RequestMapping("signUp/submit")
-	public String getSignUpForm(@Valid @ModelAttribute("user") User user, BindingResult br) {
+	
+	@RequestMapping("/perform_registration")
+	public String submitSignUpForm(@Valid @ModelAttribute("user") User user, BindingResult br) {
 		System.out.println("Submit");
 		System.out.println("Has erros?: " + br.hasErrors());
 		System.out.println(user);
 		if(br.hasErrors()) return "sign-up-page";
-		return "home";
-	}
-
-	
-	@PostMapping("/signIn")
-	public String signInUser(@RequestParam String username, @RequestParam String password) {
-		return "sign-in-page";
+		repository.save(user);
+		return "home-page";
 	}
 	
-	
+		
 }

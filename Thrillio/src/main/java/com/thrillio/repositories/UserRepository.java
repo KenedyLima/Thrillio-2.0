@@ -8,5 +8,6 @@ import com.thrillio.entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	public User findByUsername(String username);
+		public User findByUsername(String username);
+
 }

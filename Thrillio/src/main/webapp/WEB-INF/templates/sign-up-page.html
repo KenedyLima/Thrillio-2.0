@@ -24,7 +24,7 @@
         <h1 class="site-logo">thrillio.io</h1>
       </header>
       <main>
-        <form class="sign-up-form" action="@{/auth/submit}" th:object="${user}">
+        <form class="sign-up-form" th:action="@{/auth/perform_registration}" th:object="${user}">
           <h2 class="form-title">Create your account</h2>
           <p class="form-p">Join us and bookmark your favorites!</p>
           <div class="fields-wrapper">

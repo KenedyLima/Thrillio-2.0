@@ -5,11 +5,11 @@
     <title>Homepage</title>
     <link
       rel="stylesheet"
-      href="@{/css/general-settings.css}"
+      th:href="@{/css/general-settings.css}"
     />
   	 <link
       rel="stylesheet"
-      href="@{/css/home.css}"
+      th:href="@{/css/home.css}"
     />
   </head>
   <body>
@@ -19,12 +19,12 @@
         <ul class="auth-buttons-wrapper">
           <li>
             <button class="auth-button reset-button">
-              <a href="@{/auth/signUp}"> Sign Up</a>
+              <a th:href="@{/auth/signUp}"> Sign Up</a>
             </button>
           </li>
           <li>
             <button class="auth-button reset-button sign-in-button">
-              <a href="@{/auth/login}">Sign In</a>
+              <a th:href="@{/auth/login}">Sign In</a>
             </button>
           </li>
         </ul>

@@ -3,36 +3,9 @@
   <head>
     <meta charset="ISO-8859-1" />
     <title>Login</title>
- 
-    <link
-      rel="stylesheet"
-      href="@{/css/general-settings.css}"
-    />
- 	
- 	<link
-      rel="stylesheet"
-      href="@{/css/sign-in-up.css}"
-    />
-
-
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/sign-in-page.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/general-settings.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/sign-in-up.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/sign-in-page.css"
-    />
-    <link th:href="@{/css/sign-up-page.css}" rel="stylesheet" />
+ <link th:href="@{/css/sign-in-up.css}" rel="stylesheet" />
+  	
+ <link th:href="@{/css/sign-in-page.css}" rel="stylesheet" />
     <link th:href="@{/css/general-settings.css}" rel="stylesheet" />
   </head>
   <body>
@@ -41,17 +14,17 @@
         <h1 class="site-logo">thrillio.io</h1>
       </header>
       <main>
-        <form class="sign-up-form" action="@{/auth/submit}" th:object="${user}">
+        <form class="sign-up-form" method="post" th:action="@{/perform_login}">
           <h2 class="form-title">Login</h2>
           <p class="form-p">welcome back!</p>
           <div class="fields-wrapper">
             <div class="label-input-wrapper flex-column">
               <label for="email">Email</label>
               <input
-                id="email"
+                id="username"
                 type="text"
                 placeholder="jhon.doe@example.com"
-                th:field="*{email}"
+              	name="username"
               />
             </div>
             <div class="label-input-wrapper flex-column">
@@ -60,7 +33,7 @@
                 id="password"
                 placeholder="my@SuP3r.S3curePassW0rd"
                 type="password"
-                th:field="*{password}"
+              	name="password"
               />
             </div>
             <input type="submit" class="submit-button" value="Join Now" />
