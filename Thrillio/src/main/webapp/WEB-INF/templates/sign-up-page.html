@@ -5,18 +5,24 @@
     <title>Sign Up</title>
     <link
       rel="stylesheet"
-      href="../../../resources/static/css/general-settings.css"
+      href="../../../resources/static/css/general-settings-stylesheet.css"
     />
-    <link rel="stylesheet" href="../../../resources/static/" />
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/register-login-stylesheet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../resources/static/css/form-style.css"
+    />
 
     <link
       rel="stylesheet"
-      href="../../../resources/static/css/sign-up-page.css"
+      href="../../../resources/static/css/register-stylesheet.css"
     />
     <link th:href="@{/css/sign-up-page.css}" rel="stylesheet" />
     <link th:href="@{/css/general-settings.css}" rel="stylesheet" />
     <link th:href="@{/css/sign-in-up.css}" rel="stylesheet" />
-  
   </head>
   <body>
     <div class="container">
@@ -24,7 +30,11 @@
         <h1 class="site-logo">thrillio.io</h1>
       </header>
       <main>
-        <form class="sign-up-form" th:action="@{/auth/perform_registration}" th:object="${user}">
+        <form
+          class="sign-up-form"
+          th:action="@{/auth/perform_registration}"
+          th:object="${user}"
+        >
           <h2 class="form-title">Create your account</h2>
           <p class="form-p">Join us and bookmark your favorites!</p>
           <div class="fields-wrapper">

@@ -1,0 +1,13 @@
+.nav-link.browse-link:link,
+.nav-link.browse-link:visited {
+  background-color: #fff7ed;
+  color: #18181b;
+}
+
+.bookmark-button {
+  background-color: #22c55e;
+}
+
+.bookmark-button:hover {
+  background-color: #16a34a;
+}

@@ -1,22 +1,30 @@
 package com.thrillio.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import com.thrillio.constants.KidFriendlyStatus;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Bookmark {
 	
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long bookmarkId;
 	private String title;
 	private String profileUrl;
 	private KidFriendlyStatus kidFriendlyStatus = KidFriendlyStatus.UNKNOWN;
-	private User kidFriendlyMarkedBy;
-	private User sharedBy;
-
 	public long getId() {
-		return id;
+		return bookmarkId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.bookmarkId = id;
 	}
 
 	public String getTitle() {
@@ -43,21 +51,5 @@ public abstract class Bookmark {
 
 	public void setKidFriendlyStatus(KidFriendlyStatus kidFriendlyStatusDecision) {
 		this.kidFriendlyStatus = kidFriendlyStatusDecision;
-	}
-
-	public User getKidFriendlyMarkedBy() {
-		return kidFriendlyMarkedBy;
-	}
-
-	public void setKidFriendlyMarkedBy(User kidFriendlyMarkedBy) {
-		this.kidFriendlyMarkedBy = kidFriendlyMarkedBy;
-	}
-
-	public User getSharedBy() {
-		return sharedBy;
-	}
-
-	public void setSharedBy(User sharedBy) {
-		this.sharedBy = sharedBy;
 	}
 }

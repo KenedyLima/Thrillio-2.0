@@ -1,4 +1,7 @@
+
 package com.thrillio.config;
+
+import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +17,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
 	@Autowired
+	public DataSource dataSource;
+	
+	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("pass").roles("USER");
+		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select email, password, enabled from user where email = ?").authoritiesByUsernameQuery("select email, authority from authoritie where email = ?");
+																								
 	}
 
 	@Bean
@@ -26,8 +33,8 @@ public class SecurityConfiguration {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests(
-				authz -> authz.antMatchers("/").permitAll().antMatchers("/home").hasRole("USER").antMatchers("/browse").hasRole("USER").antMatchers("/bookmarks").hasRole("USER")).formLogin()
-				.loginPage("/auth/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/home").failureUrl("/");
+				authz -> authz.antMatchers("/").permitAll().antMatchers("/bookmarks").hasRole("USER").antMatchers("/browse").hasRole("USER").antMatchers("/bookmarks").hasRole("USER")).formLogin()
+				.loginPage("/auth/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/bookmarks").failureUrl("/").usernameParameter("email");
 
 		return http.build();
 	}

@@ -1,15 +1,16 @@
 package com.thrillio.controllers;
 
+import java.security.Principal;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thrillio.entities.User;
 import com.thrillio.repositories.UserRepository;
@@ -44,5 +45,11 @@ public class AuthController {
 		return "home-page";
 	}
 	
-		
+
+	@GetMapping("/user")
+	public String getUserInformation(Principal principal, Model model) {
+		User user = repository.findByEmail(principal.getName());
+		model.addAttribute("user", user);
+		return "configuration-page"	;
+	}
 }

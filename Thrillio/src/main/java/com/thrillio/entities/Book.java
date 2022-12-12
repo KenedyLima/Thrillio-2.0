@@ -2,11 +2,16 @@ package com.thrillio.entities;
 
 import java.util.Arrays;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
 import org.apache.commons.lang3.StringUtils;
 
 import com.thrillio.constants.BookGenre;
 import com.thrillio.project.partners.Shareable;
 
+
+@Entity
 public class Book extends Bookmark implements Shareable{
 
 	private String imageUrl;

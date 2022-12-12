@@ -22,12 +22,7 @@ public class MainController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public String getLandingPage() {
-		return "landing-page";
-	}
-	
-	@RequestMapping(method=RequestMethod.GET, value = "/home")
-	public String getHomePage() {
-		return "home-page";
+		return "homepage";
 	}
 
 	@RequestMapping(method=RequestMethod.GET, value = "/browse")

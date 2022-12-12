@@ -2,8 +2,90 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="ISO-8859-1" />
+
     <title>Browse</title>
+	<link rel="stylesheet" href="../../../resources/static/css/general-settings.css">
+	<link rel="stylesheet" href="../../../resources/static/css/browse-bookmarks.css">
+	<link rel="stylesheet" href="../../../resources/static/css/browse.css">
+	<link rel="stylesheet" th:href="@{/css/general-settings.css}" />
+
+    <link rel="stylesheet" th:href="@{/css/browse-bookmarks.css}" />
+    <link rel="stylesheet" th:href="@{/css/browse.css}" />
+    <link th:href="@{/css/sign-in-page.css}" rel="stylesheet" />
   </head>
+
   <body>
-  </body>
+    <div class="container">
+      <header>
+        <h1 class="site-logo">thrillio.io</h1>
+        <nav class="nav">
+          <a class="nav-link browse-link" href="../templates/browse-page.html"
+            >Browse</a
+          >
+          <a
+            class="nav-link bookmarks-link"
+            href="../templates/bookmarks-page.html
+          "
+            >Bookmarks</a
+          >
+        </nav>
+        <button class="reset-button profile-box">
+          <img
+            class="user-img"
+            th:src="@{/img/user.svg}"
+            alt="unknown-user-icon"
+          />
+          <span class="username">username001</span>
+        </button>
+      </header>
+      <main>
+        <h2>Browse</h2>
+        <div class="filter-buttons-wrapper">
+          <button class="all-filter filter-button current-filter reset-button"><a href="../templates/browse-page.html">All</a></button>
+          <button class="movies-filter filter-button reset-button"><a href="../templates/browse-page.html#movies-1">Movies</a> </button>
+          <button class="books-filter filter-button reset-button"><a href="../templates/browse-page.html#books-1">Books</a> </button>
+          <button class="books-filter filter-button reset-button"> <a href="../templates/browse-page.html#weblinks-1">Weblinks</a> </button>
+          
+        </div>
+
+        <div class="flex-column bookmark-type-container">
+          <div class="books-container bookmark-type">
+            <h3>Books</h3>
+            <div class="bookmarks-container">
+
+          </div>
+          <nav class="pagination">
+            <div class="page current-page">1</div>
+            <div class="page">2</div>
+            <div class="page">3</div>
+          </nav>
+      
+          <div class="movies-container bookmark-container">
+            <h3>Movies</h3>
+            <div class="bookmarks-container">
+              
+          </div>
+
+          <nav class="pagination">
+            <div class="page current-page">1</div>
+            <div class="page">2</div>
+            <div class="page">3</div>
+          </nav>
+          <div class="weblinks-container bookmark-container">
+            <h3>Weblinks</h3>
+            <div class="bookmarks-container">
+              
+            </div>
+            <nav class="pagination">
+              <div class="page current-page">1</div>
+              <div class="page">2</div>
+              <div class="page">3</div>
+            </nav>
+              
+          </div>
+        </div>
+      </main>
+    </div>
+<script src="../../../resources/static/js/browse.js"></script>
+	</body>
 </html>
