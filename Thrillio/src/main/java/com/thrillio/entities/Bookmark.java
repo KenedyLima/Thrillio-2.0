@@ -10,15 +10,21 @@ import javax.persistence.InheritanceType;
 import com.thrillio.constants.KidFriendlyStatus;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Bookmark {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long bookmarkId;
 	private String title;
-	private String profileUrl;
-	private KidFriendlyStatus kidFriendlyStatus = KidFriendlyStatus.UNKNOWN;
+
+	public Bookmark(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus) {
+		super();
+		this.title = title;
+	}
+
+	public Bookmark() {
+	}
+
 	public long getId() {
 		return bookmarkId;
 	}
@@ -35,21 +41,5 @@ public abstract class Bookmark {
 		this.title = title;
 	}
 
-	public String getProfileUrl() {
-		return profileUrl;
-	}
-
-	public void setProfileUrl(String profileUrl) {
-		this.profileUrl = profileUrl;
-	}
-	
 	public abstract boolean isKidFriendlyElegible();
-
-	public KidFriendlyStatus getKidFriendlyStatus() {
-		return kidFriendlyStatus;
-	}
-
-	public void setKidFriendlyStatus(KidFriendlyStatus kidFriendlyStatusDecision) {
-		this.kidFriendlyStatus = kidFriendlyStatusDecision;
-	}
 }

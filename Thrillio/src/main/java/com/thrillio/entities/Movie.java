@@ -1,17 +1,34 @@
 package com.thrillio.entities;
 
-import java.util.Arrays;
+import javax.persistence.Entity;
 
+import com.thrillio.constants.KidFriendlyStatus;
 import com.thrillio.constants.MovieGenre;
 
-public class Movie extends Bookmark{
+@Entity
+public class Movie extends Bookmark {
 
 	private String imageUrl;
 	private int releaseYear;
-	private String[] cast;
-	private String[] directors;
 	private MovieGenre genre;
 	private double imdbRating;
+
+	public Movie() {
+	}
+
+	public Movie(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus) {
+		super(title, profileUrl, kidFriendlyStatus);
+	}
+
+	
+	public Movie(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus, String imageUrl, int releaseYear,
+			MovieGenre genre, double imdbRating) {
+		super(title, profileUrl, kidFriendlyStatus);
+		this.imageUrl = imageUrl;
+		this.releaseYear = releaseYear;
+		this.genre = genre;
+		this.imdbRating = imdbRating;
+	}
 
 	public int getReleaseYear() {
 		return releaseYear;
@@ -19,22 +36,6 @@ public class Movie extends Bookmark{
 
 	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
-	}
-
-	public String[] getCast() {
-		return cast;
-	}
-
-	public void setCast(String[] cast) {
-		this.cast = cast;
-	}
-
-	public String[] getDirectors() {
-		return directors;
-	}
-
-	public void setDirectors(String[] directors) {
-		this.directors = directors;
 	}
 
 	public MovieGenre getGenre() {
@@ -54,14 +55,8 @@ public class Movie extends Bookmark{
 	}
 
 	@Override
-	public String toString() {
-		return "Movie [title=" + getTitle() + ", releaseYear=" + releaseYear + ", cast=" + Arrays.toString(cast) + ", directors="
-				+ Arrays.toString(directors) + ", genre=" + genre + ", imdbRating=" + imdbRating + "]";
-	}
-
-	@Override
 	public boolean isKidFriendlyElegible() {
-		if(genre.equals(MovieGenre.HORROR) || genre.equals(MovieGenre.THRILLERS)) {
+		if (genre.equals(MovieGenre.HORROR) || genre.equals(MovieGenre.THRILLERS)) {
 			return false;
 		}
 		return true;

@@ -18,11 +18,12 @@ public class SecurityConfiguration {
 
 	@Autowired
 	public DataSource dataSource;
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.jdbcAuthentication().dataSource(dataSource).usersByUsernameQuery("select email, password, enabled from user where email = ?").authoritiesByUsernameQuery("select email, authority from authoritie where email = ?");
-																								
+		auth.jdbcAuthentication().dataSource(dataSource)
+				.usersByUsernameQuery("select email, password, enabled from users where email = ?")
+				.authoritiesByUsernameQuery("select email, authority from authorities where email = ?");
 	}
 
 	@Bean
@@ -32,10 +33,13 @@ public class SecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests(
-				authz -> authz.antMatchers("/").permitAll().antMatchers("/bookmarks").hasRole("USER").antMatchers("/browse").hasRole("USER").antMatchers("/bookmarks").hasRole("USER")).formLogin()
-				.loginPage("/auth/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/bookmarks").failureUrl("/").usernameParameter("email");
-
+//		http.csrf().disable().authorizeHttpRequests(authz -> authz.antMatchers("/").permitAll()
+//				.antMatchers("/bookmark-management/**").hasRole("USER").antMatchers("/auth/user").hasRole("USER")
+//				.antMatchers("/auth/users").hasAnyRole("USER, ADMIN")
+//				.antMatchers("/browse").hasRole("USER").antMatchers("/bookmarks").hasRole("USER")).formLogin().loginPage("/auth/login")
+//				.loginProcessingUrl("/perform_login").defaultSuccessUrl("/bookmarks").failureUrl("auth/login")
+//				.usernameParameter("email");
+		http.csrf().disable();
 		return http.build();
 	}
 

@@ -1,288 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="ISO-8859-1" />
-    <title>Bookmarks</title>
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/general-settings-stylesheet.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/browse-bookmarks-stylesheet.css"
-    />
 
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/bookmarks-stylesheet.css"
-    />
-    <link rel="stylesheet" th:href="@{/css/general-settings.css}" />
-    <link rel="stylesheet" th:href="@{/css/bookmarks-page.css}" />
+<head>
+	<meta charset="ISO-8859-1" />
+	<title>Bookmarks</title>
 
-    <link rel="stylesheet" th:href="@{/css/browse-bookmarks.css}" />
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1 class="site-logo">thrillio.io</h1>
-        <nav class="nav">
-          <a class="nav-link browse-link" href="../templates/browse-page.html"
-            >Browse</a
-          >
-          <a
-            class="nav-link bookmark-link"
-            href="../templates/bookmarks-page.html"
-            >Bookmarks</a
-          >
-        </nav>
-        <div class="profile-box">
-          <img
-            class="user-img"
-            src="../../../resources/static/img/user.svg"
-            alt="unknown-user-icon"
-          />
-          <span class="username">username7777777</span>
-          <div class="profile-box-body">
-            <button class="config-button reset-button">
-              <img
-                class="icon"
-                src="../../../resources/static/img/gear.png"
-                alt=""
-              />
-              Configuration
-            </button>
-            <button class="logout-button reset-button">
-              <img
-                class="icon"
-                src="../../../resources/static/img/logout.png"
-                alt=""
-              />Log out
-            </button>
-          </div>
-        </div>
-      </header>
-      <main>
-        <h2 class="bookmarks-title">Bookmarks</h2>
-        <div class="filter-buttons-wrapper">
-          <button class="all-filter filter-button current-filter reset-button">
-            All
-          </button>
-          <button class="movies-filter filter-button reset-button">
-            Movies
-          </button>
-          <button class="books-filter filter-button reset-button">Books</button>
-          <button class="weblinks-filter filter-button reset-button">
-            Weblinks
-          </button>
-        </div>
+	<link rel="stylesheet" th:href="@{/css/general-settings-stylesheet.css}" />
+	<link rel="stylesheet" th:href="@{/css/browse-bookmarks-stylesheet.css}" />
 
-        <div class="flex-column bookmark-type-container">
-          <div class="movies-container bookmark-type">
-            <h3>Movies</h3>
-            <div class="bookmarks-container">
-              <div id="1" class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                  <button class="reset-button remove-button">Remove</button>
-                </div>
-              </div>
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
+	<link rel="stylesheet" th:href="@{/css/bookmarks-stylesheet.css}" />
+</head>
 
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
-            </div>
-            <nav class="pagination">
-              <div class="page current-page">1</div>
-              <div class="page">2</div>
-              <div class="page">3</div>
-            </nav>
-          </div>
+<body>
+	<div class="container">
+		<header>
+			<h1 class="site-logo">thrillio.io</h1>
+			<nav class="nav">
+				<a class="nav-link browse-link" th:href="@{/browse}">Browse</a>
+				<a class="nav-link bookmark-link" th:href="@{/bookmarks}">Bookmarks</a>
+			</nav>
+			<div class="profile-box">
+				<img class="user-img" th:src="@{/img/user.svg}" alt="unknown-user-icon" />
+				<span class="username">username7777777</span>
+				<div class="profile-box-body">
+					<button class="config-button reset-button">
+						<img class="icon" th:src="@{/img/gear.png}" alt="" />
+						Configuration
+					</button>
+					<button class="logout-button reset-button">
+						<img class="icon" th:src="@{/img/logout.png}" alt="" />Log out
+					</button>
+				</div>
+			</div>
+		</header>
+		<main>
+			<h2 class="bookmarks-title">Bookmarks</h2>
+			<div class="filter-buttons-wrapper">
+				<button class="all-filter filter-button current-filter reset-button">
+					All
+				</button>
+				<button class="movies-filter filter-button reset-button">
+					Movies
+				</button>
+				<button class="books-filter filter-button reset-button">Books</button>
+				<button class="weblinks-filter filter-button reset-button">
+					Weblinks
+				</button>
+			</div>
 
-          <div class="books-container bookmark-type">
-            <h3>Books</h3>
-            <div class="bookmarks-container">
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
+			<div class="flex-column bookmark-type-container">
+				<div class="movies-container bookmark-type">
+					<h3>Movies</h3>
+					<div class="bookmarks-container">
+						<div movie-id="436270" class="bookmark">
+							<img class="cover" src="https://images.gr-assets.com/books/1465675526l/16902.jpg" alt="" />
+							<div class="info-container flex-column">
+								<span class="info title">Title: <span class="value">Walden</span></span>
+								<span class="info genre">Genre: <span class="value">Thriller</span></span>
+								<span class="info publication-year">Publication Year: <span
+										class="value">1986</span></span>
+								<span class="info KidFriendly">Kid Friendly: <span class="value">No</span></span>
+								<button class="reset-button remove-button">Remove</button>
+							</div>
+						</div>
 
-              <div class="bookmark">
-                <img
-                  class="cover"
-                  src="https://images.gr-assets.com/books/1465675526l/16902.jpg"
-                  alt=""
-                />
-                <div class="info-container flex-column">
-                  <span class="info"
-                    >Title: <span class="value">Walden</span></span
-                  >
-                  <span class="info"
-                    >Genre: <span class="value">Thriller</span></span
-                  >
-                  <span class="info"
-                    >Publication Year: <span class="value">1986</span></span
-                  >
-                  <span class="info"
-                    >Kid Friendly: <span class="value">No</span></span
-                  >
-                </div>
-              </div>
-            </div>
+						<nav class="pagination">
+							<div class="page current-page">1</div>
+							<div class="page">2</div>
+							<div class="page">3</div>
+						</nav>
+					</div>
+				</div>
+				<div class="books-container bookmark-type">
+					<h3>Books</h3>
+					<div class="bookmarks-container">
+						<div movie-id="436270" class="bookmark">
+							<img class="cover" src="https://images.gr-assets.com/books/1465675526l/16902.jpg" alt="" />
+							<div class="info-container flex-column">
+								<span class="info title">Title: <span class="value">Walden</span></span>
+								<span class="info genre">Genre: <span class="value">Thriller</span></span>
+								<span class="info publication-year">Publication Year: <span
+										class="value">1986</span></span>
+								<span class="info KidFriendly">Kid Friendly: <span class="value">No</span></span>
+								<button class="reset-button remove-button">Remove</button>
+							</div>
+						</div>
 
-            <nav class="pagination">
-              <div class="page current-page">1</div>
-              <div class="page">2</div>
-              <div class="page">3</div>
-            </nav>
-          </div>
-          <div class="weblinks-container bookmark-type">
-            <h3>Weblinks</h3>
+						<nav class="pagination">
+							<div class="page current-page">1</div>
+							<div class="page">2</div>
+							<div class="page">3</div>
+						</nav>
+					</div>
+				</div>
+				<div class="weblinks-container bookmark-type">
+					<h3>Weblinks</h3>
+					<div class="bookmarks-container">
+						<div movie-id="436270" class="bookmark">
+							<img class="cover" src="https://images.gr-assets.com/books/1465675526l/16902.jpg" alt="" />
+							<div class="info-container flex-column">
+								<span class="info title">Title: <span class="value">Walden</span></span>
+								<span class="info genre">Genre: <span class="value">Thriller</span></span>
+								<span class="info publication-year">Publication Year: <span
+										class="value">1986</span></span>
+								<span class="info KidFriendly">Kid Friendly: <span class="value">No</span></span>
+								<button class="reset-button remove-button">Remove</button>
+							</div>
+						</div>
 
-            <nav class="pagination">
-              <div class="page current-page">1</div>
-              <div class="page">2</div>
-              <div class="page">3</div>
-            </nav>
-          </div>
-        </div>
-      </main>
-    </div>
-    <script src="../../../resources/static/js/bookmarks.js"></script>
-    <script src="../../../resources/static/js/browse-bookmarks.js"></script>
-  </body>
+						<nav class="pagination">
+							<div class="page current-page">1</div>
+							<div class="page">2</div>
+							<div class="page">3</div>
+						</nav>
+					</div>
+
+				</div>
+		</main>
+	</div>
+	<script th:src="@{/js/browse-bookmarks.js}"></script>
+	<script th:src="@{/js/bookmarks.js}"></script>
+</body>
+
 </html>

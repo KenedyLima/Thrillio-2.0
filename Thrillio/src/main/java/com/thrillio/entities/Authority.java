@@ -1,37 +1,39 @@
 package com.thrillio.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-@Entity(name = "authoritie")
+import org.hibernate.annotations.Cascade;
+
+@Entity(name = "authorities")
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"email", "authority"}))
 public class Authority {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(length = 50)
-	private String email;
+	@OneToOne
+	@JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
+	private User user;	
 	@Column(length = 50)
 	private String authority;
 	
 	public Authority() {
 
 	}
-
-	public String getEmail() {
-		return email;
+	
+	public Authority(User user) {
+		this.user = user;
+		this.authority = "ROLE_USER";
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getAuthority() {
 		return authority;
 	}

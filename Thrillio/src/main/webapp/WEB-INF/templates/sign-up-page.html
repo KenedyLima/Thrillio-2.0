@@ -20,9 +20,11 @@
       rel="stylesheet"
       href="../../../resources/static/css/register-stylesheet.css"
     />
-    <link th:href="@{/css/sign-up-page.css}" rel="stylesheet" />
-    <link th:href="@{/css/general-settings.css}" rel="stylesheet" />
-    <link th:href="@{/css/sign-in-up.css}" rel="stylesheet" />
+    <link th:href="@{/css/general-settings-stylesheet.css}" rel="stylesheet" />
+    <link th:href="@{/css/register-stylesheet.css}" rel="stylesheet" />
+    <link th:href="@{/css/register-login-stylesheet.css}" rel="stylesheet" />
+    <link th:href="@{/css/form-style.css}" rel="stylesheet" />
+  
   </head>
   <body>
     <div class="container">
@@ -34,6 +36,7 @@
           class="sign-up-form"
           th:action="@{/auth/perform_registration}"
           th:object="${user}"
+			method="POST"
         >
           <h2 class="form-title">Create your account</h2>
           <p class="form-p">Join us and bookmark your favorites!</p>

@@ -19,7 +19,7 @@ import com.thrillio.repositories.UserRepository;
 @Controller
 @RequestMapping("/")
 public class MainController {
-
+	
 	@RequestMapping(method=RequestMethod.GET)
 	public String getLandingPage() {
 		return "homepage";
@@ -34,4 +34,5 @@ public class MainController {
 	public String getBookmarksPage() {
 		return "bookmarks-page";
 	}
+
 }

@@ -1,37 +1,38 @@
-	package com.thrillio.entities;
+package com.thrillio.entities;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity(name="user")
+@Entity(name = "users")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	//private String firstName;
-//	private String lastName;
-//	private int age;
-	private String email;	
+	private String firstName;
+	private String lastName;
+	private int age;
+	@Column(nullable = false)
+	private String email;
 	private String password;
 	private boolean enabled;
 
-	public User(String firstName, String lastName, int age, String email, String password, boolean enabled) {
+	@OneToOne(mappedBy = "user", targetEntity = Authority.class, cascade = { CascadeType.PERSIST, CascadeType.REFRESH,
+			CascadeType.REMOVE })
+	private Authority authority;
+
+	public User(String firstName, String lastName, int age, String email, String password, boolean enabled,
+			Authority authority) {
 		this.email = email;
 		this.password = password;
 		this.enabled = enabled;
 	}
- 	@OneToOne(targetEntity = Authority.class)
- 	private Authority authority;
- 	
 
-
-/*	@OneToMany
-	private Set<Authority> authorities;
-*/
 	public User() {
 
 	}
@@ -67,7 +68,16 @@ public class User {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-/*
+
+	public Authority getAuthority() {
+		return authority;
+	}
+
+	public void setAuthority(Authority authority) {
+		this.authority = authority;
+	}
+
+
 	public String getLastName() {
 		return lastName;
 	}
@@ -91,5 +101,5 @@ public class User {
 	public void setAge(int age) {
 		this.age = age;
 	}
-*/
+
 }

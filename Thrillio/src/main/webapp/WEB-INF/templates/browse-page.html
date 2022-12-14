@@ -4,14 +4,9 @@
     <meta charset="ISO-8859-1" />
 
     <title>Browse</title>
-	<link rel="stylesheet" href="../../../resources/static/css/general-settings.css">
-	<link rel="stylesheet" href="../../../resources/static/css/browse-bookmarks.css">
-	<link rel="stylesheet" href="../../../resources/static/css/browse.css">
-	<link rel="stylesheet" th:href="@{/css/general-settings.css}" />
-
-    <link rel="stylesheet" th:href="@{/css/browse-bookmarks.css}" />
-    <link rel="stylesheet" th:href="@{/css/browse.css}" />
-    <link th:href="@{/css/sign-in-page.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/css/general-settings-stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{/css/browse-bookmarks-stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{/css/browse-stylesheet.css}" />
   </head>
 
   <body>
@@ -19,36 +14,64 @@
       <header>
         <h1 class="site-logo">thrillio.io</h1>
         <nav class="nav">
-          <a class="nav-link browse-link" href="../templates/browse-page.html"
+          <a class="nav-link browse-link" th:href="@{/browse}"
             >Browse</a
           >
           <a
             class="nav-link bookmarks-link"
-            href="../templates/bookmarks-page.html
+            href="@{/bookmarks}
           "
             >Bookmarks</a
           >
         </nav>
-        <button class="reset-button profile-box">
+        <div class="profile-box">
           <img
             class="user-img"
             th:src="@{/img/user.svg}"
             alt="unknown-user-icon"
           />
-          <span class="username">username001</span>
-        </button>
+          <span class="username">username</span>
+          <div class="profile-box-body">
+            <button class="config-button reset-button">
+              <img
+                class="icon"
+                th:src="@{/img/gear.png}"
+                alt="dddd"
+              />
+              Configuration
+            </button>
+            <button class="logout-button reset-button">
+              <img
+                class="icon"
+                th:src="@{/img/logout.png}"
+                alt=""
+              />Log out
+            </button>
+          </div>
+        </div>
       </header>
       <main>
         <h2>Browse</h2>
-        <div class="filter-buttons-wrapper">
-          <button class="all-filter filter-button current-filter reset-button"><a href="../templates/browse-page.html">All</a></button>
-          <button class="movies-filter filter-button reset-button"><a href="../templates/browse-page.html#movies-1">Movies</a> </button>
-          <button class="books-filter filter-button reset-button"><a href="../templates/browse-page.html#books-1">Books</a> </button>
-          <button class="books-filter filter-button reset-button"> <a href="../templates/browse-page.html#weblinks-1">Weblinks</a> </button>
-          
-        </div>
+        			<div class="filter-buttons-wrapper">
+				<button class="all-filter filter-button current-filter reset-button">
+					All
+				</button>
+				<button class="movies-filter filter-button reset-button">
+					Movies
+				</button>
+				<button class="books-filter filter-button reset-button">Books</button>
+				<button class="weblinks-filter filter-button reset-button">
+					Weblinks
+				</button>
+			</div>
 
         <div class="flex-column bookmark-type-container">
+          <div class="movies-container bookmark-type">
+            <h3>Movies</h3>
+            <div class="bookmarks-container">
+              
+          </div>
+          </div>
           <div class="books-container bookmark-type">
             <h3>Books</h3>
             <div class="bookmarks-container">
@@ -59,19 +82,9 @@
             <div class="page">2</div>
             <div class="page">3</div>
           </nav>
-      
-          <div class="movies-container bookmark-container">
-            <h3>Movies</h3>
-            <div class="bookmarks-container">
-              
           </div>
 
-          <nav class="pagination">
-            <div class="page current-page">1</div>
-            <div class="page">2</div>
-            <div class="page">3</div>
-          </nav>
-          <div class="weblinks-container bookmark-container">
+          <div class="weblinks-container bookmark-type">
             <h3>Weblinks</h3>
             <div class="bookmarks-container">
               
@@ -83,9 +96,15 @@
             </nav>
               
           </div>
+         </div>
+         
         </div>
       </main>
     </div>
-<script src="../../../resources/static/js/browse.js"></script>
-	</body>
-</html>
+<script th:src="@{/js/browse.js}" type="module"></script>
+<script th:src="@{/js/browse-bookmarks.js}"></script>
+	
+</body>
+
+
+  </html>

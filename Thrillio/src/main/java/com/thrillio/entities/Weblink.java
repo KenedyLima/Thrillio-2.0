@@ -1,7 +1,10 @@
 package com.thrillio.entities;
 
+import javax.persistence.Entity;
+
 import com.thrillio.project.partners.Shareable;
 
+@Entity
 public class Weblink extends Bookmark implements Shareable{
 
 	private String url;
