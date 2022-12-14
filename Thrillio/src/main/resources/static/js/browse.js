@@ -1,4 +1,6 @@
 "use stricted";
+import * as env from "./env_variables.js";
+
 
 const localStorage = window.localStorage;
 const moviesContainer = document.querySelector(
@@ -23,6 +25,7 @@ async function listenToPageLoad() {
 	setisContentLoaded(true);
 	configureBookmarkButtons();
 	fetchAndCacheGenresIds();
+	console.log(env.TMDB_API_KEY);
 }
 
 window.addEventListener("hashchange", updateBookmarks);
@@ -99,16 +102,13 @@ function configureBookmarkButtons() {
 function extractDisplayedMovieInfo(movie) {
 	const releaseYear = extractYear(movie.release_date);
 	const imgUrl = "https://image.tmdb.org/t/p/original/" + movie.poster_path;
-	const isKidFriendly = movie.adult == true ? false : true;
 	return {
 		id: movie.id,
 		title: movie.title,
 		releaseYear: releaseYear,
-		imgUrl: imgUrl,
+		imageUrl: imgUrl,
 		imdbRating: movie.vote_average,
-		genre: "horror",
-		kidFriendlyElegible: isKidFriendly,
-
+		genre: 1,
 	}
 
 }
@@ -120,18 +120,24 @@ function extractYear(date) {
 
 // CALLBACKS
 
-function listenToBookmarkButtons(e) {
+async function listenToBookmarkButtons(e) {
 	const id = Number(e.target.closest('.bookmark').getAttribute('movie-id'));
 	let movie = null;
 	currentPageContent.movies.forEach(instance => { instance.id == id ? movie = instance : null });
 	const movieInfo = extractDisplayedMovieInfo(movie);
-	console.log(movieInfo);
-	fetch("/bookmark-management/movies", {
-		method: "POST",
-		body: movieInfo,
-	})
+	const response = await postMovie(movieInfo);
+	console.log(await response.json());
 }
 
+async function postMovie(movieInfo) {
+	return fetch("/bookmark-management/movies", {
+		method: "POST",
+		body: JSON.stringify(movieInfo),
+		headers: {
+			'Content-type': "application/json"
+		}
+	})
+} 
 // ASYNC FUNCTIONS
 async function fetchCurrentContentAndCache() {
 	const movies = await fetchMovies();
@@ -143,14 +149,14 @@ async function fetchCurrentContentAndCache() {
 
 async function fetchMovies() {
 	const url = new URL("https://api.themoviedb.org/3/discover/movie");
-	url.searchParams.append("api_key", "c477b0a44244708a7d2aa95516f71908");
+	url.searchParams.append("api_key", env.TMDB_API_KEY);
 	const response = await fetch(url);
 	return await response.json();
 }
 
 async function fetchAndCacheGenresIds() {
 	const url = new URL("https://api.themoviedb.org/3/genre/movie/list");
-	url.searchParams.append("api_key", "c477b0a44244708a7d2aa95516f71908");
+	url.searchParams.append("api_key", env.TMDB_API_KEY);
 	const response = await fetch(url);
 	movieGenres = await response.json();
 	console.log(movieGenres);
