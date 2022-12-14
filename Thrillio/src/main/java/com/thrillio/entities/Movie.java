@@ -10,7 +10,7 @@ public class Movie extends Bookmark {
 
 	private String imageUrl;
 	private int releaseYear;
-	private MovieGenre genre;
+	private int[] genre;
 	private double imdbRating;
 
 	public Movie() {
@@ -20,14 +20,14 @@ public class Movie extends Bookmark {
 		super(title, profileUrl, kidFriendlyStatus);
 	}
 
-	
 	public Movie(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus, String imageUrl, int releaseYear,
-			MovieGenre genre, double imdbRating) {
+			int[] genre, double imdbRating) {
 		super(title, profileUrl, kidFriendlyStatus);
 		this.imageUrl = imageUrl;
 		this.releaseYear = releaseYear;
 		this.genre = genre;
 		this.imdbRating = imdbRating;
+
 	}
 
 	public int getReleaseYear() {
@@ -38,12 +38,12 @@ public class Movie extends Bookmark {
 		this.releaseYear = releaseYear;
 	}
 
-	public MovieGenre getGenre() {
+	public int[] getGenre() {
 		return genre;
 	}
 
-	public void setGenre(MovieGenre genre2) {
-		this.genre = genre2;
+	public void setGenre(int[] genre) {
+		this.genre = genre;
 	}
 
 	public double getImdbRating() {
@@ -54,11 +54,9 @@ public class Movie extends Bookmark {
 		this.imdbRating = imdbRating;
 	}
 
+	//TODO:implement
 	@Override
 	public boolean isKidFriendlyElegible() {
-		if (genre.equals(MovieGenre.HORROR) || genre.equals(MovieGenre.THRILLERS)) {
-			return false;
-		}
 		return true;
 	}
 

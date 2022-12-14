@@ -1,8 +1,6 @@
 package com.thrillio.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,6 +14,7 @@ public abstract class Bookmark {
 	@Id
 	private long bookmarkId;
 	private String title;
+	private boolean kidFriendlyElegible;
 
 	public Bookmark(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus) {
 		super();
@@ -42,4 +41,8 @@ public abstract class Bookmark {
 	}
 
 	public abstract boolean isKidFriendlyElegible();
+
+	public void setKidFriedlyElegible(boolean kidFriedlyElegible) {
+		this.kidFriendlyElegible = kidFriedlyElegible;
+	}
 }

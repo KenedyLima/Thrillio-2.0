@@ -1,0 +1,45 @@
+header {
+  margin: 2rem 4rem;
+}
+
+.tab-page-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.tab {
+  border-right: 1px solid black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-img {
+  width: 7.5rem;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+.config-button {
+  padding: 2.4rem 0rem;
+  cursor: pointer;
+}
+
+.config-button:hover,
+.config-button.active-button {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.page {
+  padding: 0 12rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-up-form {
+  width: 100%;
+  border: none;
+}

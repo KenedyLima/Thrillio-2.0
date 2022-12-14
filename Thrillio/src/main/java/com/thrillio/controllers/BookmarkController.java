@@ -32,7 +32,14 @@ public class BookmarkController {
 	@PostMapping("/movies")
 	public Movie postMovie(@RequestBody Movie movie) {
 		System.out.println(movie);
-		return (Movie) movieRepository.save(movie);
+		boolean movieExists = movieRepository.existsById(movie.getId());
+		if (!movieExists) {
+			movie.setKidFriedlyElegible(movie.isKidFriendlyElegible());
+			movieRepository.save(movie);
+		}
+		if(movieExists)
+		System.out.println("Already bookmarked");
+		return movie;
 	}
 
 	@DeleteMapping("/movies/{id}")
@@ -40,9 +47,12 @@ public class BookmarkController {
 		System.out.println("Deleting bookmark with id of" + movieId);
 		String response = "";
 		Optional<Movie> movie = movieRepository.findById(Long.parseLong(movieId));
-		if(movie.isPresent()) {movieRepository.deleteById(Long.parseLong(movieId));
-		response = "bookmark removed with id " + movieId + "was removed";}
-		if(movie.isEmpty()) response = "Bookmark not found";
+		if (movie.isPresent()) {
+			movieRepository.deleteById(Long.parseLong(movieId));
+			response = "bookmark removed with id " + movieId + "was removed";
+		}
+		if (movie.isEmpty())
+			response = "Bookmark not found";
 		return response;
 	}
 

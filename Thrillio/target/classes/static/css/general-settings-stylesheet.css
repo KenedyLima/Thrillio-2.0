@@ -1,0 +1,55 @@
+/* COLORS:
+    #fb923c
+    #18181b
+    #1e293b
+    #fff7ed
+    TINTS:    
+    SHADES:#b0662a 
+    
+*/
+
+@font-face {
+  font-family: "lato-black";
+  src: url("../fonts/Lato/Lato-Black.ttf");
+}
+
+@font-face {
+  font-family: "lato-regular";
+  src: url("../fonts/Lato/Lato-Regular.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "lato-regular";
+  font-size: 10px;
+  color: #18181b;
+  overflow-x: hidden;
+}
+
+.container {
+  margin: 2rem 4rem;
+}
+
+.site-logo {
+  color: #fb923c;
+  display: inline-block;
+  font-size: 3rem;
+  font-family: "lato-black";
+}
+
+/* HELPER CLASSES */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.reset-button {
+  border: none;
+  background-color: transparent;
+  font-family: "lato-regular";
+}

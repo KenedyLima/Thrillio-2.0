@@ -1,0 +1,13 @@
+.nav-link.bookmark-link:link,
+.nav-link.bookmark-link:visited {
+  background-color: #fff7ed;
+  color: #18181b;
+}
+
+.remove-button {
+  background-color: #b91c1c;
+}
+
+.remove-button:hover {
+  background-color: #dc2626;
+}

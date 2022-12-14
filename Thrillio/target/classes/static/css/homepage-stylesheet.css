@@ -1,0 +1,285 @@
+section {
+  padding: 4.8rem;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 3.6rem;
+  letter-spacing: 1.7px;
+  margin-bottom: 1.2rem;
+}
+
+.section-p {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+/*********/
+/* HERO */
+/********/
+
+.hero {
+  padding: 3.6rem;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e293b;
+  /* background: linear-gradient(180deg, #18181b, #18181bef); */
+}
+
+.hero-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.auth-buttons-wrapper {
+  display: flex;
+  list-style: none;
+  gap: 1.6rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-button a:link,
+.auth-button a:visited {
+  cursor: pointer;
+  font-size: 1.6rem;
+  color: #fff7ed;
+  transition: all 400ms;
+  text-decoration: none;
+}
+
+.auth-button.sign-in-button {
+  padding: 0.8rem 1.2rem;
+  font-family: "lato-black";
+}
+
+.auth-button.sign-in-button,
+.cta-button {
+  color: #fff7ed;
+  border-radius: 5px;
+  background-color: #fb923c;
+  transition: all 400ms;
+}
+
+.auth-button.sign-in-button:hover,
+.cta-button:hover {
+  background-color: #b0662a;
+  cursor: pointer;
+}
+
+.hero-title-cta-button-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-title {
+  font-size: 3.6rem;
+  text-transform: initial;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff7ed;
+}
+
+.hero-title h1:nth-child(2) {
+  margin-bottom: 2.4rem;
+}
+
+.hero-title span {
+  border-bottom: 4px solid;
+}
+
+.cta-button {
+  width: 50%;
+  font-size: 2rem;
+  padding: 1.6rem 3.2rem;
+  font-family: "lato-regular";
+  letter-spacing: 1.6px;
+}
+/*******************/
+/* BROWSE SECTION */
+/******************/
+.browse-section {
+  position: relative;
+  height: 90rem;
+}
+
+.vertical-dashed-line {
+  height: 70rem;
+  border-left: 10px #1e293b dashed;
+  left: 50%;
+  top: calc(4.8rem + 4.4rem + 3rem + 3rem + 2.4rem);
+  position: absolute;
+  display: inline-block;
+}
+
+#path-1 {
+  top: calc(4.8rem + 4.4rem + 3rem + 4.8rem);
+  left: 50%;
+}
+
+#path-1 .path-drawing {
+  height: auto;
+  width: 50rem;
+}
+
+.path {
+  position: absolute;
+}
+
+#path-2 {
+  top: 40%;
+  transform: translateY(-50%);
+}
+
+#path-2 .path-drawing {
+  height: 30rem;
+  width: auto;
+}
+
+#path-2,
+#path-3 {
+  right: 50%;
+}
+
+#path-3 {
+  bottom: 2.4rem;
+}
+
+.path-reward {
+  position: absolute;
+}
+
+#path-1 .path-reward {
+  right: -1rem;
+  top: 50%;
+}
+
+.path-reward img {
+  height: 20rem;
+  width: auto;
+}
+
+#path-1 .path-reward img {
+  transform: scaleX(-1);
+}
+
+#path-2 .path-reward {
+  left: 0rem;
+  top: 45%;
+  transform: translateX(-50%);
+}
+
+#path-3 .path-reward {
+  left: 0rem;
+  bottom: 1rem;
+  transform: translateX(-50%);
+}
+
+/*******************/
+/* BOOKMARK SECTION */
+/******************/
+
+.bookmark-section {
+  background-color: #b0662a;
+  color: #fff7ed;
+}
+
+.boxes-container {
+  width: 100%;
+  display: flex;
+  gap: 3.2rem;
+}
+
+.box {
+  height: 39.7rem;
+  width: 100%;
+  border: 2px solid #fff7ed;
+  align-items: center;
+}
+
+.box-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 1.2rem;
+  border-top: 2px solid #fff7ed;
+  padding: 0.8rem;
+}
+
+.box-item .title {
+  grid-column: span 2;
+}
+
+.info-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.box-item p {
+  font-size: 1.4rem;
+}
+
+.box-header {
+  font-size: 2.4rem;
+}
+
+.bookmark-p {
+  margin-bottom: 4.8rem;
+}
+
+.box-header {
+  padding: 1.6rem;
+}
+
+/***************/
+/* CTA SECTION */
+/***************/
+
+.cta-section {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-p {
+  width: 75%;
+  margin-bottom: 3.2rem;
+}
+
+.cta-section .cta-button {
+  width: 25%;
+}
+/**********/
+/* FOOTER */
+/**********/
+
+footer {
+  background-color: #1e293b;
+  padding: 3.2rem;
+  font-size: 1.4rem;
+}
+
+.links-container {
+  display: flex;
+  color: #1e293b;
+  gap: 4.8rem;
+}
+
+.links-container a:link,
+.links-container a:visited {
+  text-decoration: none;
+
+  color: #18181b;
+}
+
+.link-container-title {
+  color: #fff7ed;
+  margin-bottom: 1.6rem;
+  font-size: 1.6rem;
+}
+
+.contact-us-links,
+.more-about-links {
+}

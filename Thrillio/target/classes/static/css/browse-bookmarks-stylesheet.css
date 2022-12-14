@@ -1,0 +1,204 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 9.6rem;
+  align-items: center;
+}
+
+header .nav {
+  list-style: none;
+  display: flex;
+  border-radius: 5px;
+  background-color: #fb923c;
+  gap: 1.2rem;
+  padding: 1.2rem;
+  justify-self: center;
+}
+
+header .nav a:link,
+header .nav a:visited {
+  text-decoration: none;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  color: #fff7ed;
+  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  transition: all 400ms;
+}
+
+header .nav a:active,
+header .nav a:hover {
+  background-color: #b0662a;
+}
+.profile-box {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 5px;
+  position: relative;
+  width: 18rem;
+}
+
+.user-img {
+  display: inline-block;
+  width: 3rem;
+  height: auto;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 0.6rem;
+}
+
+main h2 {
+  font-size: 3rem;
+  font-family: "Lato-Black";
+  margin-bottom: 1.6rem;
+  display: inline-block;
+}
+
+.icon {
+  width: 1.5rem;
+  height: auto;
+}
+
+.filter-buttons-wrapper {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 4.8rem;
+  justify-content: center;
+}
+
+.filter-buttons-wrapper button {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.filter-buttons-wrapper button:hover {
+  color: #fb923c;
+}
+
+.filter-buttons-wrapper .current-filter {
+  color: #fb923c;
+}
+
+.bookmarks-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 3rem;
+  margin: 2.4rem 0;
+}
+
+.bookmark {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.bookmark .cover {
+  width: 15rem;
+  height: auto;
+}
+
+.bookmark .info-container {
+  font-size: 1.6rem;
+  gap: 1.6rem;
+}
+
+.info-container .info {
+  font-family: "lato-black";
+}
+
+.info-container .info .value {
+  font-family: "lato-regular";
+}
+
+.container h3 {
+  font-size: 2.4rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 0.6rem;
+}
+
+.bookmark-button,
+.remove-button {
+  display: inline-block;
+  color: #fff7ed;
+  width: 75%;
+  padding: 0.6rem 0;
+  border-radius: 5px;
+  transition: all 400ms;
+  cursor: pointer;
+}
+
+.bookmark-type-container {
+  gap: 2.4rem;
+}
+
+/* PAGINATION */
+
+.pagination {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+}
+.pagination .page {
+  padding: 1.6rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50px;
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.page.current-page {
+  color: #fff7ed;
+  background-color: #fb923c;
+}
+/* OPEN STATE */
+
+.profile-box.opened {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.profile-box.opened .profile-box-body {
+  position: absolute;
+  bottom: 0;
+  transform: translateY(100%);
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid black;
+  width: 18rem;
+}
+
+.profile-box .profile-box-body {
+  display: none;
+}
+
+.profile-box-body button {
+  transition: all 400ms;
+  padding: 1.6rem 1.6rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+}
+
+.profile-box-body .icon {
+  width: 1.5rem;
+  height: auto;
+}
+.profile-box-body button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.profile-box .logout-button {
+  color: #dc2626;
+}
