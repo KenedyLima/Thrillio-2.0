@@ -1,7 +1,14 @@
 const removeButton = document.querySelector(".remove-button");
+const localStorage = window.localStorage;
+let isBookmarksCached = localStorage.getItem('isBookmarksCached');
+// EVENT LISTENERS
+window.addEventListener('load', listenToPageLoad)
 
-// Event Listeners
-// CALLBACK
+// CALLBACK	
+async function listenToPageLoad() {
+	if(!isBookmarksCached) fetchBookmarks()
+}
+
 async function removeBookmark(e) {
 	console.log("removing");
 	const bookmark = e.target;

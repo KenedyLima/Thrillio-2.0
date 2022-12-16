@@ -2,17 +2,17 @@ package com.thrillio.controllers;
 
 import java.security.Principal;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.thrillio.entities.Authority;
 import com.thrillio.entities.User;
 import com.thrillio.repositories.UserRepository;
 
@@ -22,6 +22,7 @@ public class AuthController {
 
 	@Autowired
 	private UserRepository repository;
+	private User user;
 
 	@RequestMapping("/register")
 	public String getSignUpForm(Model model) {
@@ -29,31 +30,38 @@ public class AuthController {
 		model.addAttribute("user", user);
 		return "sign-up-page";
 	}
-	
+
 	@RequestMapping("/login")
 	public String getSignInForm(Model model) {
 		model.addAttribute("user", new User());
 		return "sign-in-page";
 	}
-	
-	@RequestMapping("/perform_registration")
-	public String submitSignUpForm(@Valid @ModelAttribute("user") User user, BindingResult br) {
-		if(br.hasErrors()) return "sign-up-page";
-		Authority authority = new Authority(user);
-		user.setAuthority(authority);
-		user.setEnabled(true);
+
+	@PostMapping("/perform_registration")
+	public String submitSignUpForm(@RequestBody User user, BindingResult br) {
+		System.out.println(user);
+		if (br.hasErrors())
+			return "sign-up-page";
 		repository.save(user);
-		
+
 		return "bookmarks-page";
 	}
-	
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/user")
+	public String updateUserInfo(Model model, Principal principal) {
+		System.out.println("Not different");
+		System.out.println("UpdateUser");
+		model.addAttribute("user", new User());
+		return "configuration-page";
+		
+	}
 
 	@GetMapping("/user")
-	public String getUserInformation(Principal principal, Model model) {
-		if(principal == null) return "sign-in-page"; 
-		System.out.println(principal.getName());
-		User user = repository.findByEmail(principal.getName());
+	public String getUser(Model model, Principal principal) {
+		System.out.println("GetUser");
+		User user =repository.findByEmail("user");
 		model.addAttribute("user", user);
-		return "configuration-page"	;
+		return "configuration-page";
 	}
+
 }

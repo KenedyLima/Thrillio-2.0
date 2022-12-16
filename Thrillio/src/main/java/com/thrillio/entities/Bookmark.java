@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.thrillio.constants.KidFriendlyStatus;
 
@@ -15,6 +17,9 @@ public abstract class Bookmark {
 	private long bookmarkId;
 	private String title;
 	private boolean kidFriendlyElegible;
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User user;
 
 	public Bookmark(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus) {
 		super();
@@ -45,4 +50,13 @@ public abstract class Bookmark {
 	public void setKidFriedlyElegible(boolean kidFriedlyElegible) {
 		this.kidFriendlyElegible = kidFriedlyElegible;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 }

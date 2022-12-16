@@ -18,7 +18,7 @@ profileBox.addEventListener("click", (e) => {
 configButton.addEventListener("click", (e) => {
 	console.log('clicking config button')
 	window.location.href =
-		"/auth/user";
+		"/user-management/user";
 });
 
 logoutButton.addEventListener("click", (e) => {

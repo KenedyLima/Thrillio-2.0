@@ -13,7 +13,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
 public class SecurityConfiguration {
 
 	@Autowired
@@ -33,12 +32,12 @@ public class SecurityConfiguration {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//		http.csrf().disable().authorizeHttpRequests(authz -> authz.antMatchers("/").permitAll()
-//				.antMatchers("/bookmark-management/**").hasRole("USER").antMatchers("/auth/user").hasRole("USER")
-//				.antMatchers("/auth/users").hasAnyRole("USER, ADMIN")
-//				.antMatchers("/browse").hasRole("USER").antMatchers("/bookmarks").hasRole("USER")).formLogin().loginPage("/auth/login")
-//				.loginProcessingUrl("/perform_login").defaultSuccessUrl("/bookmarks").failureUrl("auth/login")
-//				.usernameParameter("email");
+		http.csrf().disable().authorizeHttpRequests(authz -> authz.antMatchers("/").permitAll()
+				.antMatchers("/bookmark-management/**").hasRole("USER").antMatchers("/auth/user").hasRole("USER")
+				.antMatchers("/auth/users").hasAnyRole("USER, ADMIN")
+				.antMatchers("/browse").hasRole("USER").antMatchers("/bookmarks").hasRole("USER")).formLogin().loginPage("/auth/login")
+				.loginProcessingUrl("/perform_login").defaultSuccessUrl("/bookmarks").failureUrl("/auth/login")
+				.usernameParameter("email");
 		http.csrf().disable();
 		return http.build();
 	}

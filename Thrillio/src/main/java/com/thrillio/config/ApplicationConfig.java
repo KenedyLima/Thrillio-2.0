@@ -20,7 +20,7 @@ import com.thrillio.repositories.UserRepository;
 
 
 @Configuration
-//@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {SecurityAutoConfiguration.class})
 @ComponentScan("com.thrillio")
 @EnableJpaRepositories(basePackageClasses = {UserRepository.class})
 @EntityScan(basePackageClasses = {User.class})

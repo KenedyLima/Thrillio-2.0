@@ -1,5 +1,6 @@
 package com.thrillio.controllers;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -12,15 +13,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.thrillio.constants.KidFriendlyStatus;
-import com.thrillio.constants.MovieGenre;
 import com.thrillio.entities.Movie;
 import com.thrillio.repositories.MovieRepository;
+import com.thrillio.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/bookmark-management")
 public class BookmarkController {
-
+	
+	@Autowired 
+	private UserRepository userRepository;
+	
 	@Autowired
 	private MovieRepository movieRepository;
 
@@ -30,15 +33,18 @@ public class BookmarkController {
 	}
 
 	@PostMapping("/movies")
-	public Movie postMovie(@RequestBody Movie movie) {
+	public Movie postMovie(@RequestBody Movie movie, Principal principal) {
 		System.out.println(movie);
 		boolean movieExists = movieRepository.existsById(movie.getId());
 		if (!movieExists) {
 			movie.setKidFriedlyElegible(movie.isKidFriendlyElegible());
 			movieRepository.save(movie);
+			System.out.println(userRepository);
+			movie.setUser(userRepository.findByEmail(principal.getName()));
 		}
 		if(movieExists)
 		System.out.println("Already bookmarked");
+		
 		return movie;
 	}
 

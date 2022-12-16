@@ -1,5 +1,4 @@
 "use stricted";
-import * as env from "./env_variables.js";
 
 
 const localStorage = window.localStorage;
@@ -11,7 +10,6 @@ const weblinksContainer = document.querySelector(".weblinks-container .bookmarks
 let currentPageContent = { movies: [], books: [], weblinks: [] };
 let isContentLoaded = localStorage.getItem("isContentLoaded");
 let bookmarkButtons;
-
 let movieGenres;
 
 // EVENT LISTENERS
@@ -20,12 +18,10 @@ window.addEventListener("load", listenToPageLoad);
 
 async function listenToPageLoad() {
 	if (!isContentLoaded) await fetchCurrentContentAndCache(); else fetchCurrentContentFromCache();
-	console.log(isContentLoaded)
+	await fetchAndCacheGenresIds();
 	generateAndInsertContentHTML();
-	setisContentLoaded(true);
+	setIsContentLoaded(true);
 	configureBookmarkButtons();
-	fetchAndCacheGenresIds();
-	console.log(env.TMDB_API_KEY);
 }
 
 window.addEventListener("hashchange", updateBookmarks);
@@ -46,7 +42,7 @@ function generateMoviesHTML(movies) {
             >Title: <span class="value">${movie.original_title}</span></span
           >
           <span class="info"
-            >Genre: <span class="value"></span></span
+            >Genre: <span class="value">${getMovieGenres(movie)}</span></span
           >
           <span class="info"
             >Publication Year: <span class="value">${movie.release_date
@@ -88,7 +84,7 @@ function fetchCurrentContentFromCache() {
 	currentPageContent = JSON.parse(localStorage.getItem("currentPageContent"));
 }
 
-function setisContentLoaded(boolean) {
+function setIsContentLoaded(boolean) {
 	localStorage.setItem("isContentLoaded", boolean);
 }
 
@@ -108,7 +104,7 @@ function extractDisplayedMovieInfo(movie) {
 		releaseYear: releaseYear,
 		imageUrl: imgUrl,
 		imdbRating: movie.vote_average,
-		genre: 1,
+		genre: ["1", "5"]
 	}
 
 }
@@ -126,7 +122,8 @@ async function listenToBookmarkButtons(e) {
 	currentPageContent.movies.forEach(instance => { instance.id == id ? movie = instance : null });
 	const movieInfo = extractDisplayedMovieInfo(movie);
 	const response = await postMovie(movieInfo);
-	console.log(await response.json());
+	updateMovieContentAndHTML(movie.id);
+	configureBookmarkButtons();
 }
 
 async function postMovie(movieInfo) {
@@ -137,27 +134,48 @@ async function postMovie(movieInfo) {
 			'Content-type': "application/json"
 		}
 	})
-} 
+}
+
+function getMovieGenres(movie) {
+	let genres = ""
+	movieGenres.forEach(genre => {
+
+		movie.genre_ids.forEach((genreId, i) => {
+			if (genreId === genre.id) {
+				genres = genres.concat((i + 1) === movie.genre_ids.length ? genre.name : genre.name + ", ")
+			}
+		})
+	})
+	return genres;
+}
+
+function updateMovieContentAndHTML(movieId) {
+	currentPageContent.movies.forEach((movie, i) => movie.id === movieId ? currentPageContent.movies.splice(i, 1) : "");
+	updateCurrentContentCache();
+	generateAndInsertContentHTML();
+}
+
+function updateCurrentContentCache() {
+	localStorage.setItem("currentPageContent", JSON.stringify(currentPageContent))
+}
 // ASYNC FUNCTIONS
 async function fetchCurrentContentAndCache() {
 	const movies = await fetchMovies();
 	//const books = await fetchBooks();	
 	//const weblinks = await fetchWeblinks();	
 	currentPageContent.movies = movies.results;
-	localStorage.setItem("currentPageContent", JSON.stringify(currentPageContent))
+	updateCurrentContentCache();
 }
 
 async function fetchMovies() {
-	const url = new URL("https://api.themoviedb.org/3/discover/movie");
-	url.searchParams.append("api_key", env.TMDB_API_KEY);
+	const url = new URL("http://localhost:8081/media-management/movies");
 	const response = await fetch(url);
 	return await response.json();
 }
 
 async function fetchAndCacheGenresIds() {
-	const url = new URL("https://api.themoviedb.org/3/genre/movie/list");
-	url.searchParams.append("api_key", env.TMDB_API_KEY);
+	const url = new URL("http://localhost:8081/media-management/movies/genre");
 	const response = await fetch(url);
-	movieGenres = await response.json();
-	console.log(movieGenres);
+	const json = await response.json();
+	movieGenres = json.genres;
 }
