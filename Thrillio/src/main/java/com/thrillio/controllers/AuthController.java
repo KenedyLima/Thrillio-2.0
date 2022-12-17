@@ -7,12 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.thrillio.entities.Authority;
 import com.thrillio.entities.User;
 import com.thrillio.repositories.UserRepository;
 
@@ -22,7 +23,6 @@ public class AuthController {
 
 	@Autowired
 	private UserRepository repository;
-	private User user;
 
 	@RequestMapping("/register")
 	public String getSignUpForm(Model model) {
@@ -42,16 +42,20 @@ public class AuthController {
 		System.out.println(user);
 		if (br.hasErrors())
 			return "sign-up-page";
+		Authority authority = new Authority(user, "ROLE_USER");
+		user.setAuthority(authority);
 		repository.save(user);
 
 		return "bookmarks-page";
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/user")
-	public String updateUserInfo(Model model, Principal principal) {
-		System.out.println("Not different");
-		System.out.println("UpdateUser");
-		model.addAttribute("user", new User());
+	public String updateUserInfo(@ModelAttribute User user, Model model, Principal principal) {
+		System.out.println("UpdateUser: " + (User) model.getAttribute("user"));
+		User users = (User) model.getAttribute("user");
+		System.out.println("User name: " + users.getId());
+		model.addAttribute("user", user);
+		repository.save(user);
 		return "configuration-page";
 		
 	}
@@ -59,7 +63,8 @@ public class AuthController {
 	@GetMapping("/user")
 	public String getUser(Model model, Principal principal) {
 		System.out.println("GetUser");
-		User user =repository.findByEmail("user");
+		User user = repository.findByEmail("third");
+		System.out.println(user.getId());
 		model.addAttribute("user", user);
 		return "configuration-page";
 	}

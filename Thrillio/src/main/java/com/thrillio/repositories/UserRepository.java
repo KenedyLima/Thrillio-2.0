@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import com.thrillio.entities.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>, CustomUserRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByEmail(String email);
 	
 }

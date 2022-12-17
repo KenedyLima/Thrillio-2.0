@@ -30,27 +30,27 @@ public class MediaController {
 		String response = client.send(request, BodyHandlers.ofString()).body();
 		return response;
 	}
-	
+
 	@GetMapping("/movies")
 	public String getMovies() throws IOException, InterruptedException {
 
 		HttpRequest request = HttpRequest
 				.newBuilder(URI.create("https://api.themoviedb.org/3/discover/movie?api_key=" + TMDB_API_KEY))
 				.setHeader("Content-Type", "application/json").GET().build();
-		
+
 		String response = client.send(request, BodyHandlers.ofString()).body();
 		return response;
 	}
-	
+
 	@GetMapping("/books")
 	public String getBooks() {
-		
+
 		return "";
 	}
-	
+
 	@GetMapping("/weblinks")
 	public String getWeblinks() {
-		
+
 		return "";
 	}
 }

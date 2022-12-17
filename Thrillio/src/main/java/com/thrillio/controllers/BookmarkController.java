@@ -14,37 +14,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thrillio.entities.Movie;
+import com.thrillio.entities.User;
 import com.thrillio.repositories.MovieRepository;
 import com.thrillio.repositories.UserRepository;
 
 @RestController
 @RequestMapping("/bookmark-management")
 public class BookmarkController {
-	
-	@Autowired 
+
+	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private MovieRepository movieRepository;
 
 	@GetMapping("/movies")
-	public Collection<Movie> getMovies() {
-		return movieRepository.findAll();
+	public Collection<Movie> getMovies(Principal principal) {
+		User user = userRepository.findByEmail("user");
+		Collection<Movie> movies = movieRepository.findByUserId(user.getId());
+		return movies;
 	}
 
 	@PostMapping("/movies")
 	public Movie postMovie(@RequestBody Movie movie, Principal principal) {
-		System.out.println(movie);
 		boolean movieExists = movieRepository.existsById(movie.getId());
 		if (!movieExists) {
+			User user = userRepository.findByEmail("user");
 			movie.setKidFriedlyElegible(movie.isKidFriendlyElegible());
+			movie.setUser(user);
 			movieRepository.save(movie);
-			System.out.println(userRepository);
-			movie.setUser(userRepository.findByEmail(principal.getName()));
 		}
-		if(movieExists)
-		System.out.println("Already bookmarked");
-		
+		if (movieExists)
+			System.out.println("Already bookmarked");
+
 		return movie;
 	}
 

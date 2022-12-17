@@ -1,5 +1,6 @@
 package com.thrillio.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -17,8 +18,8 @@ public abstract class Bookmark {
 	private long bookmarkId;
 	private String title;
 	private boolean kidFriendlyElegible;
-	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	@ManyToOne(cascade = CascadeType.PERSIST, targetEntity = User.class)
+	@JoinColumn(name = "user_id", updatable = false, referencedColumnName = "id", nullable = false)
 	private User user;
 
 	public Bookmark(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus) {
