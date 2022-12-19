@@ -1,6 +1,7 @@
 package com.thrillio.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,34 +13,44 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "users")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
+	@Size(max = 15, min = 4, message = "Size should be between 4 - 15 characters")
+	@NotEmpty(message = "Required Field")
 	private String firstName;
+	@Size(max = 15, min = 4, message = "Size should be between 4 - 15 characters")
+	@NotEmpty(message = "Required Field")
 	private String lastName;
+	private Date birthDate;
 	private int age;
 	@Column(unique = true)
 	private String email;
+	
 	private String password;
 	@ColumnDefault(value = "1")
 	private boolean enabled;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Bookmark.class)
 	private Set<Bookmark> bookmarks = new HashSet<Bookmark>();
-
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, targetEntity = Authority.class)
 	private Authority authority;
 
 	public User() {
-
 	}
 
 	public long getId() {
@@ -112,6 +123,14 @@ public class User implements Serializable{
 
 	public void setAuthority(Authority authority) {
 		this.authority = authority;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 }

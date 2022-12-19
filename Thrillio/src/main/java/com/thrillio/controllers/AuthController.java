@@ -42,8 +42,6 @@ public class AuthController {
 		System.out.println(user);
 		if (br.hasErrors())
 			return "sign-up-page";
-		Authority authority = new Authority(user, "ROLE_USER");
-		user.setAuthority(authority);
 		repository.save(user);
 
 		return "bookmarks-page";
@@ -51,20 +49,25 @@ public class AuthController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/user")
 	public String updateUserInfo(@ModelAttribute User user, Model model, Principal principal) {
-		System.out.println("UpdateUser: " + (User) model.getAttribute("user"));
-		User users = (User) model.getAttribute("user");
-		System.out.println("User name: " + users.getId());
-		model.addAttribute("user", user);
-		repository.save(user);
+		User updatedUser = repository.findByEmail("next");
+		updatedUser.setFirstName(user.getFirstName());
+		updatedUser.setLastName(user.getLastName());
+		updatedUser.setPassword(user.getPassword());
+		System.out.println("updatedUser: " + updatedUser.getId());
+		System.out.println("updatedUserPass: " + updatedUser.getPassword());
+
+		model.addAttribute(updatedUser);
+		repository.save(updatedUser);
 		return "configuration-page";
-		
+
 	}
 
 	@GetMapping("/user")
 	public String getUser(Model model, Principal principal) {
 		System.out.println("GetUser");
-		User user = repository.findByEmail("third");
+		User user = repository.findByEmail("next");
 		System.out.println(user.getId());
+		System.out.println("UserPass: " + user.getPassword());
 		model.addAttribute("user", user);
 		return "configuration-page";
 	}

@@ -16,7 +16,7 @@ public class Authority {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	@JoinColumn(name = "email", nullable = false, unique = true, updatable = false, referencedColumnName = "email")
 	private User user;
 	

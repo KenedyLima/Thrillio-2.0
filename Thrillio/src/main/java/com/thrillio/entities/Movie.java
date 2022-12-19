@@ -3,14 +3,13 @@ package com.thrillio.entities;
 import javax.persistence.Entity;
 
 import com.thrillio.constants.KidFriendlyStatus;
-import com.thrillio.constants.MovieGenre;
 
 @Entity
 public class Movie extends Bookmark {
 
 	private String imageUrl;
 	private int releaseYear;
-	private int[] genre;
+	private int[] genresIds;
 	private double imdbRating;
 
 	public Movie() {
@@ -21,11 +20,11 @@ public class Movie extends Bookmark {
 	}
 
 	public Movie(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus, String imageUrl, int releaseYear,
-			int[] genre, double imdbRating) {
+			int[] genresIds, double imdbRating) {
 		super(title, profileUrl, kidFriendlyStatus);
 		this.imageUrl = imageUrl;
 		this.releaseYear = releaseYear;
-		this.genre = genre;
+		this.genresIds = genresIds;
 		this.imdbRating = imdbRating;
 
 	}
@@ -38,12 +37,12 @@ public class Movie extends Bookmark {
 		this.releaseYear = releaseYear;
 	}
 
-	public int[] getGenre() {
-		return genre;
+	public int[] getgenresIds() {
+		return genresIds;
 	}
 
-	public void setGenre(int[] genre) {
-		this.genre = genre;
+	public void setgenresIds(int[] genresIds) {
+		this.genresIds = genresIds;
 	}
 
 	public double getImdbRating() {

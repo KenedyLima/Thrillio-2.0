@@ -8,6 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.thrillio.constants.KidFriendlyStatus;
 
 @Entity
@@ -18,6 +19,7 @@ public abstract class Bookmark {
 	private long bookmarkId;
 	private String title;
 	private boolean kidFriendlyElegible;
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.PERSIST, targetEntity = User.class)
 	@JoinColumn(name = "user_id", updatable = false, referencedColumnName = "id", nullable = false)
 	private User user;

@@ -26,7 +26,7 @@
 			<button class="config-button reset-button">Theme</button>
 		</div>
 		<div class="page">
-			<img class="user-img" src="@{/img/user.svg}	
+			<img class="user-img" th:src="@{/img/user.svg}	
         " alt="" />
 			<form class="sign-up-form" th:action="@{/auth/user}" th:method="PUT" th:object="${user}">
 				<div class="fields-wrapper">

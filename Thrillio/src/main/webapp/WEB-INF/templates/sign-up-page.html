@@ -3,23 +3,6 @@
   <head>
     <meta charset="ISO-8859-1" />
     <title>Sign Up</title>
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/general-settings-stylesheet.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/register-login-stylesheet.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/form-style.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="../../../resources/static/css/register-stylesheet.css"
-    />
     <link th:href="@{/css/general-settings-stylesheet.css}" rel="stylesheet" />
     <link th:href="@{/css/register-stylesheet.css}" rel="stylesheet" />
     <link th:href="@{/css/register-login-stylesheet.css}" rel="stylesheet" />
@@ -74,9 +57,7 @@
               <label for="age">Age</label>
               <input
                 id="age"
-                type="number"
-                placeholder="18"
-                min="0"
+                type="date"
                 th:field="*{age}"
               />
             </div>

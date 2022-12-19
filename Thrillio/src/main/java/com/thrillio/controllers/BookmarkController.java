@@ -30,7 +30,8 @@ public class BookmarkController {
 
 	@GetMapping("/movies")
 	public Collection<Movie> getMovies(Principal principal) {
-		User user = userRepository.findByEmail("user");
+		System.out.println("GET MOVIES");
+		User user = userRepository.findByEmail("next");
 		Collection<Movie> movies = movieRepository.findByUserId(user.getId());
 		return movies;
 	}
@@ -38,8 +39,9 @@ public class BookmarkController {
 	@PostMapping("/movies")
 	public Movie postMovie(@RequestBody Movie movie, Principal principal) {
 		boolean movieExists = movieRepository.existsById(movie.getId());
+		System.out.println("POST MOVIE");
 		if (!movieExists) {
-			User user = userRepository.findByEmail("user");
+			User user = userRepository.findByEmail("next");
 			movie.setKidFriedlyElegible(movie.isKidFriendlyElegible());
 			movie.setUser(user);
 			movieRepository.save(movie);
