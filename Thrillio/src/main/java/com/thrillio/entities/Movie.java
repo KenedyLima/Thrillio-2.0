@@ -9,8 +9,8 @@ public class Movie extends Bookmark {
 
 	private String imageUrl;
 	private int releaseYear;
-	private int[] genresIds;
-	private double imdbRating;
+	private int[] genreIds;
+	private double voteAverage;
 
 	public Movie() {
 	}
@@ -20,12 +20,12 @@ public class Movie extends Bookmark {
 	}
 
 	public Movie(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus, String imageUrl, int releaseYear,
-			int[] genresIds, double imdbRating) {
+			int[] genreIds, double voteAverage) {
 		super(title, profileUrl, kidFriendlyStatus);
 		this.imageUrl = imageUrl;
 		this.releaseYear = releaseYear;
-		this.genresIds = genresIds;
-		this.imdbRating = imdbRating;
+		this.genreIds = genreIds;
+		this.voteAverage = voteAverage;
 
 	}
 
@@ -37,20 +37,20 @@ public class Movie extends Bookmark {
 		this.releaseYear = releaseYear;
 	}
 
-	public int[] getgenresIds() {
-		return genresIds;
+	public int[] getGenreIds() {
+		return genreIds;
 	}
 
-	public void setgenresIds(int[] genresIds) {
-		this.genresIds = genresIds;
+	public void setGenreIds(int[] genreIds) {
+		this.genreIds = genreIds;
 	}
 
-	public double getImdbRating() {
-		return imdbRating;
+	public double getvoteAverage() {
+		return voteAverage;
 	}
 
-	public void setImdbRating(double imdbRating) {
-		this.imdbRating = imdbRating;
+	public void setvoteAverage(double voteAverage) {
+		this.voteAverage = voteAverage;
 	}
 
 	//TODO:implement

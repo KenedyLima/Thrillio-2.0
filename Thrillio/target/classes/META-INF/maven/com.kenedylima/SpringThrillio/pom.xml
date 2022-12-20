@@ -77,10 +77,32 @@
 			<artifactId>json</artifactId>
 			<version>20220924</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.orienteer.jnpm</groupId>
+			<artifactId>jnpm</artifactId>
+			<version>1.4</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+<groupId>org.orienteer.jnpm</groupId>
+    <artifactId>jnpm-maven-plugin</artifactId>
+	<version>1.4</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>install</goal>
+			</goals>
+			<configuration>
+				<packages>
+					<package>jest</package>
+					<package>selenium-webdriver</package>
+				</packages>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

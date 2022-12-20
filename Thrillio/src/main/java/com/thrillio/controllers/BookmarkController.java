@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +34,8 @@ public class BookmarkController {
 	public Collection<Movie> getMovies(Principal principal) {
 		System.out.println("GET MOVIES");
 		User user = userRepository.findByEmail("next");
-		Collection<Movie> movies = movieRepository.findByUserId(user.getId());
+		System.out.println("User in GetMovies: " + user.getFirstName());
+		Collection<Movie> movies = movieRepository.findByUserIdOrderByBookmarkedDateDesc(user.getId());
 		return movies;
 	}
 
@@ -44,6 +47,7 @@ public class BookmarkController {
 			User user = userRepository.findByEmail("next");
 			movie.setKidFriedlyElegible(movie.isKidFriendlyElegible());
 			movie.setUser(user);
+			System.out.println("Movie Ids: " + movie.getGenreIds());
 			movieRepository.save(movie);
 		}
 		if (movieExists)
@@ -53,12 +57,12 @@ public class BookmarkController {
 	}
 
 	@DeleteMapping("/movies/{id}")
-	public String deleteMovie(@PathVariable(name = "id") String movieId) {
-		System.out.println("Deleting bookmark with id of" + movieId);
+	public String deleteMovie(@PathVariable(name = "id") String movieId, Principal principal) {
+		User user = userRepository.findByEmail("next");
 		String response = "";
 		Optional<Movie> movie = movieRepository.findById(Long.parseLong(movieId));
 		if (movie.isPresent()) {
-			movieRepository.deleteById(Long.parseLong(movieId));
+			movieRepository.deleteByBookmarkIdAndUserId(Long.parseLong(movieId), user.getId());
 			response = "bookmark removed with id " + movieId + "was removed";
 		}
 		if (movie.isEmpty())

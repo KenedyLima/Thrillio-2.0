@@ -1,5 +1,7 @@
 package com.thrillio.entities;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,6 +25,7 @@ public abstract class Bookmark {
 	@ManyToOne(cascade = CascadeType.PERSIST, targetEntity = User.class)
 	@JoinColumn(name = "user_id", updatable = false, referencedColumnName = "id", nullable = false)
 	private User user;
+	private Date bookmarkedDate;
 
 	public Bookmark(String title, String profileUrl, KidFriendlyStatus kidFriendlyStatus) {
 		super();
@@ -30,6 +33,7 @@ public abstract class Bookmark {
 	}
 
 	public Bookmark() {
+		this.setBookmarkedDate(new Date());
 	}
 
 	public long getId() {
@@ -60,6 +64,14 @@ public abstract class Bookmark {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Date getBookmarkedDate() {
+		return bookmarkedDate;
+	}
+
+	public void setBookmarkedDate(Date bookmarkedDate) {
+		this.bookmarkedDate = bookmarkedDate;
 	}
 
 }
